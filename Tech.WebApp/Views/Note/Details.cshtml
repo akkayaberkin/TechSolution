@@ -1,0 +1,106 @@
+﻿@model Tech.Entities.Kayit
+
+@{ ViewBag.Title = "Yazı Detay"; }
+
+<div class="row">
+    <div class="col-md-8 col-md-offset-2">
+        <h2>@ViewBag.Title</h2>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-8 col-md-offset-2">
+        <h4>@*Not*@</h4>
+        <hr />
+        @*<dl class="dl-horizontal">
+                <dt>
+                    @Html.DisplayNameFor(model => model.Category.Title)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.Category.Title)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.Title)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.Title)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.Text)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.Text)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.IsDraft)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.IsDraft)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.LikeCount)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.LikeCount)
+                </dd>
+
+            </dl>*@
+
+    </div>
+</div>
+
+<div class="row col-md-12 " style="margin-left:25%">
+    <div class="col-md-6">
+        <div class="card flex-md-row mb-4 shadow-sm h-md-250">
+
+            <div class="card-body d-flex flex-column align-items-start">
+                <div class="row" style=" margin-left: 80% ">
+                    <p>
+                        @Bootstrap.LinkButton("/Kayit/Edit/" + Model.Id, "warning", string.Empty, string.Empty, "edit", " Düzenle")
+                        @*@Bootstrap.LinkButton("/Kayit/Index", "default", string.Empty, string.Empty, "arrow-left", " Geri Dön!")*@
+                    </p>
+                </div>
+                <div class="mb-1 text-muted small" style="max-width:300px;">
+                    <h3></h3>
+                    <label >Beğeni Sayısı :&nbsp;&nbsp;</label>   
+                     <i class="fas fa-heart"></i>@Html.DisplayFor(model => model.LikeCount)
+                </div>
+                <strong class="d-inline-block mb-2 text-warning">
+                    <label>Not Adı :&nbsp;&nbsp;</label> @Html.DisplayFor(model => model.Title)
+                </strong>
+
+                <h6 class="mb-0">
+                    <a class="text-primary small" href="/Home/ByCategory/@Model.CategoryId">
+                        <label>Kategori Adı :&nbsp;&nbsp;</label>  @Html.DisplayFor(model => model.Category.Title)
+                    </a>
+                </h6>
+
+                <p class="card-text mb-auto">
+                    <label>İçerik : &nbsp;&nbsp;</label>  @Html.DisplayFor(model => model.Text)
+                </p>
+                @if (Model.IsDraft == true)
+                {
+                     <p class="card-text mb-auto">
+                         @*@Html.DisplayFor(model => model.IsDraft)*@
+                     </p>
+
+                    <div class="alert alert-danger" role="alert">
+                        Bu not taslak aşamasındadır.
+                    </div>}
+
+
+            </div>
+
+            <img class="card-img-right flex-auto d-none d-lg-block" alt="Thumbnail [200x250]" src="@Model.ImagePath" style="width: 200px; height: 250px;">
+        </div>
+    </div>
+</div>

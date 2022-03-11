@@ -1,0 +1,33 @@
+﻿
+@using Tech.WebApp.ViewModels
+@model UrunDurumViewModel
+<div class="list-group">
+    <div id="counter">
+        <div class="cell">
+            <i class="fas fa-users"></i>
+            <div class="counter-value number-count" data-count="@Model.urunBilgi.ToplamKayitSayisi">@Model.urunBilgi.ToplamKayitSayisi</div>
+            <p class="counter-info">Toplam Kayıt</p>
+        </div>
+        <div class="cell">
+            <i class="fas fa-check-circle green"></i>
+            <div class="counter-value number-count" data-count="@Model.urunBilgi.ToplamCozulenKayitSayisi">@Model.urunBilgi.ToplamCozulenKayitSayisi</div>
+            <p class="counter-info">Toplam Çözülen Kayıt</p>
+        </div>
+        <div class="cell">
+            <i class="fas fa-check red"></i>
+            <div class="counter-value number-count" data-count="@Model.urunBilgi.BugunCozulenKayitSayisi">@Model.urunBilgi.BugunCozulenKayitSayisi</div>
+            <p class="counter-info">Bugün Çözülen</p>
+        </div>
+        <div class="cell">
+            <i class="fas fa-bolt yellow"></i>
+            <div class="counter-value number-count" data-count="@Model.urunBilgi.IslemdeOlanKayitSayisi">@Model.urunBilgi.IslemdeOlanKayitSayisi</div>
+            <p class="counter-info">İşlemde Olan</p>
+        </div>
+        <div class="cell">
+            <i class="fas fa-rocket blue"></i>
+            <div class="counter-value number-count" data-count="@Model.urunBilgi.GonderilenKayitSayisi">@Model.urunBilgi.GonderilenKayitSayisi</div>
+            <p class="counter-info">Gönderilen</p>
+        </div>
+    </div>
+
+</div>

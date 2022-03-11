@@ -1,0 +1,51 @@
+﻿@using Tech.WebApp
+@model Tech.Entities.Urun
+
+@{
+    ViewBag.Title = "Ürün Ekle";
+}
+
+<link href="~/Content/validation-summary.css" rel="stylesheet" />
+
+
+
+<div class="row">
+
+    <div class="col-md-4 col-md-offset-4" style="margin-left: 35%; margin-top: 10%">
+
+        @using (Html.BeginForm())
+        {  
+            @Html.AntiForgeryToken()
+
+            <div class="form-horizontal">
+                <h4>Ürün Ekle</h4>
+                <hr />
+
+                @Html.ValidationSummary(false)
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Adi, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.Adi, new { htmlAttributes = new { @class = "form-control" } })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Kodu, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.Kodu, new { htmlAttributes = new { @class = "form-control" } })
+                    </div>
+                </div> 
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+                        @Bootstrap.Button("success", string.Empty, "submit", "plus", " Kaydet")
+                        @Bootstrap.LinkButton("/Home/Index", "default", string.Empty, string.Empty, "arrow-left", "Geri Dön")
+                    </div>
+                </div>
+            </div>
+        }
+
+    </div>
+
+
+</div>

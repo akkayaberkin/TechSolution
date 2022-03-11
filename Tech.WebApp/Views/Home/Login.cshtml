@@ -1,0 +1,62 @@
+﻿@using Tech.Entities.ValueObjects
+@model LoginViewModel
+
+@{ ViewBag.Title = "Giriş Sayfası"; }
+@{ Layout = ""; }
+<link href="~/Content/LoginCss/LoginRegister.css" rel="stylesheet" />
+<link href="~/Content/validation-summary.css" rel="stylesheet" />
+
+<div class="container1" id="container1">
+    <!-- sign in page -->
+    <div class="form-container sign-in-container">
+            @using (Html.BeginForm())
+            {
+            <h1 class="form__title">Giriş Yap</h1>
+              @Html.ValidationSummary(false)
+
+            <div class="form__input-group">
+                @*<label for="username">Kullanıcı Adı: </label>
+                <input type="text" class="form__input" name="username" id="username" maxlength="20" required>*@
+                @Html.TextBoxFor(model => model.Username, new { @class = "form__input", id = "username", name = "username", placeholder = "Kullanıcı Adı:" })
+
+            </div>
+            <div class="form__input-group">
+                @*<label for="pass">Şifre: </label>
+                <input type="password" class="form__input" name="pass" id="pass" maxlength="20" required>*@
+                @Html.TextBoxFor(model => model.Password, new { @class = "form__input", id = "pass", name = "pass", placeholder = "Şifreniz", type = "password" })
+
+            </div>
+            <div class="form__input-group">
+                <button type="submit" class="form__button">Gönder</button>
+            </div>
+            }
+    </div>
+
+    <!--  create account page -->
+    <div class="form-container sign-up-container">
+        <form method="POST" action="#" class="form" id="register">
+            <h1 class="form__title">Register</h1>
+            <div class="form__input-group">
+                <label for="username"> Kullanıcı Adı: </label>
+                <input type="text" class="form__input" name="username" id="username" maxlength="20" required>
+            </div>
+            <div class="form__input-group">
+                <label for="pass">Şifre: </label>
+                <input type="password" class="form__input" name="pass" id="pass" maxlength="20" required>
+            </div>
+            <button class="form__button" type="submit">Gönder</button>
+        </form>
+    </div>
+
+    <div class="overlay-container">
+        <div class="overlay">
+            <div class="overlay-panel overlay-right">
+                <h1>Merhaba!</h1>
+                <p>Bilgilerini gir ve bize katıl</p>
+                <button class="ghost" id="signUp">Kayıt Ol</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="~/Content/LoginJs/LoginRegister.js"></script>

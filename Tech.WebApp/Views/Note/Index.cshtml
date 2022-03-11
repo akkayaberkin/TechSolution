@@ -1,0 +1,101 @@
+﻿@model IEnumerable<Tech.Entities.Kayit>
+
+@{ ViewBag.Title = "Notlarım"; }
+
+<div class="row">
+
+    <div class="col-md-10 col-md-offset-1">
+        <h2>@ViewBag.Title</h2>
+        <hr />
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-10 col-md-offset-1">
+        <p style="max-width:850px;float:right">
+            @Bootstrap.LinkButton("/Kayit/Create", "primary", string.Empty, string.Empty, "plus", " Yeni")
+        </p>
+        <table class="table" style="margin-left:3%">
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Category.Title)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Title)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Text)
+                </th>
+                <th >
+                Fotoğraf 
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.IsDraft)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.LikeCount)
+                </th>
+                <th></th>
+            </tr>
+
+            @foreach (var item in Model)
+            {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Category.Title)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Title)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Text)
+            </td>
+            <td>
+                @if (!string.IsNullOrEmpty(@Html.DisplayFor(modelItem => item.ImagePath).ToString()))
+
+                {<div style="text-align:center">
+    <span class="badge badge-success">Var</span>
+</div>
+                }
+                else
+                {<div style="text-align:center">
+    <span class="badge badge-danger">Yok</span>
+</div>
+                }
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IsDraft)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.LikeCount)
+            </td>
+            <td width="250">
+                <button type="button" class="btn btn-success btn-xs" data-toggle="modal" data-target="#modal_comment" data-note-id="@item.Id">
+                    <span class="fa-solid fa-comments"></span>
+
+                </button>
+                @*@Bootstrap.LinkButton("/Kayit/Edit/" + item.Id, "warning", "btn-xs", "Düzenle", "edit", string.Empty)*@
+                <a href="/Kayit/Edit/@item.Id" class="btn btn-success btn-xs">
+                    <span class="fa-solid fa-pen-to-square"></span>
+                </a>
+                <a href="/Kayit/Details/@item.Id" class="btn btn-info btn-xs">
+                    <span class="fa-solid fa-magnifying-glass"></span>
+                </a>
+                <a href="/Kayit/Delete/@item.Id" class="btn btn-danger btn-xs">
+                    <span class="fa-solid fa-trash"></span>
+                </a>
+                @*@Bootstrap.LinkButton("/Kayit/Details/" + item.Id, "info", "btn-xs", "Detaylar", "search", string.Empty)*@
+
+                @*@Bootstrap.LinkButton("/Kayit/Delete/" + item.Id, "danger", "btn-xs", "Kaldır", "trash", string.Empty)*@
+            </td>
+        </tr>            }
+
+        </table>
+
+    </div>
+
+</div>
+
+@Bootstrap.ModalPopup(id: "modal_comment", title: "Yorumlar")
+
+<script src="~/Scripts/comment.js"></script>

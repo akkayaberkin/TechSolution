@@ -1,0 +1,102 @@
+﻿@using Tech.Entities
+@model List<Urun>
+
+@{
+    ViewBag.Title = "Kayıt Güncelleme";
+}
+<div class="row">
+
+    @*<div class="col-md-10 col-md-offset-1">
+            <h2>@ViewBag.Title</h2>
+            <hr />
+        </div>*@
+</div>
+<div class="row">
+    <div class="col-md-10 col-md-offset-1" style="margin-left:8%;margin-top:5%">
+
+        <p style="max-width:700px;float:right">
+            <a href="javascript:void(0)" class="btn btn-success" onclick="TumunuGuncelle()" >Tümünü Güncelle</a>
+            @*@Bootstrap.LinkButton("javascript:void(0)", "success TumunuGuncelle", string.Empty, string.Empty, "plus", " Tümünü Güncelle")*@
+        </p>
+        <table class="table">
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.FirstOrDefault().Adi)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.FirstOrDefault().Kodu)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.FirstOrDefault().CreatedOn)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.FirstOrDefault().Durum)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.FirstOrDefault().ModifiedOn)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.FirstOrDefault().ModifiedUsername)
+                </th>
+                <th></th>
+            </tr>
+
+            @foreach (var item in Model)
+            {
+                <tr id="@item.Id">
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Adi)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Kodu)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.CreatedOn)
+                    </td>
+
+                    <td id="status">
+                        @if (item.Durum == "Success")
+                        {
+                            <span id ="durum" class="badge badge-success " data-durum="1">Teslim Edildi</span>
+                        }
+                        else if (item.Durum == "Warning")
+                        {
+                            <span id ="durum" class="badge badge-warning "data-durum="2">Beklemede</span>
+                        }
+                        else
+                        {
+                            <span id ="durum" class="badge badge-danger "data-durum="3">Teslim Edilmedi</span>
+                        }
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ModifiedOn)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ModifiedUsername)
+                    </td>
+                    <td>
+                        @*@Bootstrap.LinkButton("/Category/Edit/" + item.Id, "warning", "btn-xs", "Düzenle", "edit", string.Empty)
+
+                            @Bootstrap.LinkButton("/Category/Details/" + item.Id, "info", "btn-xs", "Detaylar", "search", string.Empty)
+
+                            @Bootstrap.LinkButton("/Category/Delete/" + item.Id, "danger", "btn-xs", "Kaldır", "trash", string.Empty)*@
+
+
+                        <div class="form-group">
+                            <div class="col-md-10">
+                                @Html.DropDownList("durumId", null, htmlAttributes: new { @class = "form-control" })
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+            }
+
+        </table>
+
+    </div>
+
+</div>
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
+<script src="~/TechProjAssets/js/jquery.easing.min.js"></script>
+<script src="~/Scripts/UrunDurumSecimi.js"></script>

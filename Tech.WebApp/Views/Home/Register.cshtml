@@ -1,0 +1,56 @@
+﻿
+@using Tech.Entities.ValueObjects
+@model RegisterViewModel
+
+@{
+    ViewBag.Title = "Tech - Kayıt Sayfası";
+
+}
+@{ Layout = "";}
+<link href="~/Content/validation-summary.css" rel="stylesheet" />
+<link href="~/Content/LoginCss/LoginRegister.css" rel="stylesheet" />
+<div class="container1 right-panel-active" id="container1">
+        <div class="form-container sign-up-container">
+
+    @using (Html.BeginForm())
+    {
+         <h1 class="form__title">Kayıt Ol</h1>
+         <div class="form__input-group">
+             @Html.TextBoxFor(model => model.Username, new { @class = "form__input", id = "username", name = "username", placeholder = "Kullanıcı Adı:" })
+    
+         </div>
+         <div class="form__input-group">
+             @*<label for="pass">Şifre: </label>
+             <input type="password" class="form__input" name="pass" id="pass" maxlength="20" required>*@
+             @Html.TextBoxFor(model => model.EMail, new { @class = "form__input", id = "EMail", name = "EMail", placeholder = "E-posta:" })
+    
+         </div>
+         <div class="form__input-group">
+             @*<label for="pass">Şifre: </label>
+             <input type="password" class="form__input" name="pass" id="pass" maxlength="20" required>*@
+             @Html.TextBoxFor(model => model.Password, new { @class = "form__input", id = "pass", name = "pass", placeholder = "Şifre:" })
+    
+         </div>
+           <div class="form__input-group">
+         @*<label for="pass">Şifre: </label>
+         <input type="password" class="form__input" name="pass" id="pass" maxlength="20" required>*@
+         @Html.TextBoxFor(model => model.RePassword, new { @class = "form__input", id = "repass", name = "repass", placeholder = "Şifre Tekrar:" })
+    
+             </div>
+       
+         <button class="form__button" type="submit">Gönder</button>
+    }
+    </div>
+
+    <div class="overlay-container">
+        <div class="overlay">
+            <div class="overlay-panel overlay-left">
+                <h1>Hoşgeldin !</h1>
+                <p>Bilgilerini gir ve bize katıl !</p>
+                <button class="ghost" id="signIn">Zaten Hesabım Var</button>
+            </div>
+            
+        </div>
+    </div>
+</div>
+<script src="~/Content/LoginJs/LoginRegister.js"></script>
